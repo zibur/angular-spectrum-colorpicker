@@ -19,7 +19,9 @@ Dependencies
 ------------
 
 [JQuery](http://jquery.com/)
+
 [AngularJs](http://angularjs.org/)
+
 [Spectrum](http://bgrins.github.io/spectrum/)
 
 
