@@ -1,0 +1,27 @@
+{
+  "name": "angular-spectrum-colorpicker",
+  "version": "0.0.0",
+  "authors": [
+  ],
+  "description": "A starting point for angular directives.",
+  "main": "dist/angular-spectrum-colorpicker.js",
+  "keywords": [
+    "directive",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "angular": "~1.2.8",
+    "angular-mocks": "~1.2.9",
+    "jquery": "~2.0.3",
+    "spectrum": "1.3.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
