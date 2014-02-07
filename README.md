@@ -15,6 +15,15 @@ To us it, put the Angular Spectrum Colorpicker directive in your html code and b
 	<spectrum-colorpicker ng-model="someModel"></spectrum-colorpicker>
 
 
+Dependencies
+------------
+
+[JQuery](http://jquery.com/)
+[AngularJs](http://angularjs.org/)
+[Spectrum](http://bgrins.github.io/spectrum/)
+
+
+
 Initialize
 ----------
 
@@ -52,6 +61,7 @@ Grunt Tasks
  * `grunt build`: Just build
  * `grunt test:e2e`: Just test end to end
  * `grunt dist`: Test, build, bump patch version, commit, add version tag and push
+
 
 
 LICENSE
