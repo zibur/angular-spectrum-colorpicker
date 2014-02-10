@@ -26,16 +26,20 @@ Dependencies
 Usage
 -----
 
-	<spectrum-colorpicker ng-model="myModel"></spectrum-colorpicker>
+1. Include angular-spectrum-colorpicker.js
+2. Add angular spectrum colorpicker module to your angular app
+	angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
+3. use the directive whereever you want
+	<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 
 With spectrum params:
-	<spectrum-colorpicker ng-model="myModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+	<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
 
 All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 
 
-Initialize
-----------
+Initialize the source project
+-----------------------------
 
 	bower install
 	npm install
