@@ -26,7 +26,14 @@ Dependencies
 Usage
 -----
 
-1. Include angular-spectrum-colorpicker.js
+1. Include dependencies
+
+		jquery.min.js
+		angular.min.js
+		spectrum.css
+		spectrum.js
+		angular-spectrum-colorpicker.min.js
+
 2. Add angular spectrum colorpicker module to your angular app
 
 		angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
@@ -35,7 +42,7 @@ Usage
 
 		<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 
-4. Hand over all spectrum params:
+4. Customize colorpicker with spectrum params via the options attribute:
 
 		<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
 
