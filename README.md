@@ -38,7 +38,7 @@ Usage
 
 		angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
 
-3. use the directive whereever you want
+3. Use the directive whereever you want
 
 		<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 
