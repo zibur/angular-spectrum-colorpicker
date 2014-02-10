@@ -35,10 +35,11 @@ Usage
 
 		<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 
-With spectrum params:
-	<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+4. Hand over all spectrum params:
 
-All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
+		<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+
+	All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 
 
 Initialize the source project
