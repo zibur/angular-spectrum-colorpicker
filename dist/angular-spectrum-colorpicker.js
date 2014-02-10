@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v0.0.0
+ * angular-spectrum-colorpicker v0.0.1
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on spectrum.
@@ -14,6 +14,20 @@
   var angularSpectrumColorpicker = angular.module('angularSpectrumColorpicker', []);
 
   // src/js/spectrumColorpicker.directive.js
+  /**
+   * Angular Spectrum Colorpicker
+   *
+   * Bases to 100% on http://bgrins.github.io/spectrum/
+   *
+   * Usage:
+   * <spectrum-colorpicker ng-model="myModel"></spectrum-colorpicker>
+   *
+   * @param options hands over all valid spectrum options:
+   * <spectrum-colorpicker ng-model="myModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+   *
+   * valid options are:http://bgrins.github.io/spectrum/#options
+   */
+  
   angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
     return {
       restrict: 'E',
@@ -22,21 +36,24 @@
       replace: true,
       template: '<span><input class="input-small" /></span>',
       link: function($scope, $element, attrs, $ngModel) {
-        var input = $element.find('input');
+        var $input = $element.find('input');
+        var onChange = function(color) {
+          $scope.$apply(function() {
+            $ngModel.$setViewValue(color);
+          });
+        };
         var options = angular.extend({
           color: $ngModel.$viewValue,
-          change: function(color) {
-            $scope.$apply(function() {
-              $ngModel.$setViewValue(color.toHexString());
-            });
-          }
+          change: onChange
         }, $scope.$eval(attrs.options));
   
+  
+        // update colorpicker, each time the model has changed
         $ngModel.$render = function() {
-          input.spectrum('set', $ngModel.$viewValue || '');
+          $input.spectrum('set', $ngModel.$viewValue || '');
         };
   
-        input.spectrum(options);
+        $input.spectrum(options);
       }
     };
   });
