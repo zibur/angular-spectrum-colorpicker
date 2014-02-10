@@ -23,10 +23,12 @@
 
   <h1>My angular scpectrum demo</h1>
 
-  <p>{{uschi}}</p>
 
-  <spectrum-colorpicker ng-model="targetColor" show-input="true" show-alpha="true"></spectrum-colorpicker>
+  <input type="text" name="uschi" ng-model="uschiColor">
+  <spectrum-colorpicker ng-model="uschiColor" options="{showInput: true, showAlpha: true, showPalette: true, palette: [['black', 'white', 'blanchedalmond'],['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']]}"></spectrum-colorpicker>
 
+  <br>
+  <button ng-click="uschiColor='#ffffff'">set color to #ffffff</button>
 
 </body>
 </html>

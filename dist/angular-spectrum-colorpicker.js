@@ -2,7 +2,7 @@
  * angular-spectrum-colorpicker v0.0.1
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
- * Angular directive for a colorpicker, that bases on spectrum.
+ * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/.
  *
  * Copyright 2014, Jimdo, Hendrike Heydenreich <hendrike@jimdo.com>
  * Released under the MIT license
@@ -14,20 +14,6 @@
   var angularSpectrumColorpicker = angular.module('angularSpectrumColorpicker', []);
 
   // src/js/spectrumColorpicker.directive.js
-  /**
-   * Angular Spectrum Colorpicker
-   *
-   * Bases to 100% on http://bgrins.github.io/spectrum/
-   *
-   * Usage:
-   * <spectrum-colorpicker ng-model="myModel"></spectrum-colorpicker>
-   *
-   * @param options hands over all valid spectrum options:
-   * <spectrum-colorpicker ng-model="myModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
-   *
-   * valid options are:http://bgrins.github.io/spectrum/#options
-   */
-  
   angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
     return {
       restrict: 'E',

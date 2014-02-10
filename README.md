@@ -18,12 +18,20 @@ To us it, put the Angular Spectrum Colorpicker directive in your html code and b
 Dependencies
 ------------
 
-[JQuery](http://jquery.com/)
+ * [JQuery](http://jquery.com/)
+ * [AngularJs](http://angularjs.org/)
+ * [Spectrum](http://bgrins.github.io/spectrum/)
 
-[AngularJs](http://angularjs.org/)
 
-[Spectrum](http://bgrins.github.io/spectrum/)
+Usage
+-----
 
+	<spectrum-colorpicker ng-model="myModel"></spectrum-colorpicker>
+
+With spectrum params:
+	<spectrum-colorpicker ng-model="myModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+
+All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 
 
 Initialize

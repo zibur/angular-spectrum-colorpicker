@@ -1,7 +1,7 @@
 {
   "name": "angular-spectrum-colorpicker",
   "version": "0.0.1",
-  "description": "Angular directive for a colorpicker, that bases on spectrum.",
+  "description": "Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/.",
   "homepage": "https://github.com/Jimdo/angular-spectrum-colorpicker",
   "author": "Jimdo, Hendrike Heydenreich <hendrike@jimdo.com>",
   "main": "Gruntfile.js",

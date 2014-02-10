@@ -22,12 +22,7 @@ module.exports = function(grunt) {
 
   /* "Helper" Tasks */
   grunt.registerTask('_test:beforeEach', ['jshint']);
-  // grunt.registerTask('_build:less', [
-  //   'less:dist',
-  //   'less:distmin',
-  //   'concat:bannerToDistStyle',
-  //   'concat:bannerToDistStyleMin'
-  // ]);
+
   grunt.registerTask('_git:dist', ['gitcommit:dist', 'gittag:dist', 'gitpush:dist', 'gitpush:disttags']);
 
   /* "Public" Tasks */
