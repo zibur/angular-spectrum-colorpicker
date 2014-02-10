@@ -13,7 +13,6 @@
     "noempty"       : true,
     "nonew"         : true,
     "plusplus"      : false,
-    "quotmark"      : "single",
     "undef"         : true,
     "unused"        : true,
     "strict"        : false,
@@ -22,7 +21,6 @@
     "maxdepth"      : 3,
     "maxstatements" : false,
     "maxcomplexity" : false,
-    "maxlen"        : 120,
     "asi"           : false,
     "boss"          : false,
     "debug"         : false,
@@ -83,6 +81,7 @@
         "module",
         "exports",
         "require",
-        "angularSpectrumColorpicker"
+        "angularSpectrumColorpicker",
+        "console"
     ]
 }

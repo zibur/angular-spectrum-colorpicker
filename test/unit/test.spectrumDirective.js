@@ -1,21 +1,48 @@
-describe('Setup', function() {
+/* jshint unused: false */
+/* global $, $compile, $rootScope, console */
+describe('SpectrumDirective', function() {
   'use strict';
 
-  it('should be able to execute tests.', function() {
-    expect(true).toBe(true);
-  });
-
-  it('should have angular defined.', function() {
-    expect(angular).toBeDefined();
-  });
 
   it('should be able to find the angular module', function() {
     expect(angular.module('angularSpectrumColorpicker')).toBeDefined();
   });
 
-  it('should use the full jQuery to find elements', function() {
-    var elm = angular.element('<div><span class="foo" /></div>');
-    expect(elm.find('.foo').length).toBe(1);
+
+  it('should initialize spectrum when compiling the directive tag', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor"></spectrum-colorpicker>');
+    $compile($pickerElement)($rootScope);
+    expect($pickerElement.find('input').length > 0).toBe(true);
+    expect($('.sp-container').length > 0).toBe(true);
+  });
+
+
+  it('should update the model when changing the color in the colorpicker', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    // set value within the colorpicker
+    $('input.sp-input').val("#0000ff").trigger("change");
+
+    // scope should have been changed!
+    expect($scope.targetColor.toString()).toBe('#0000ff');
+
+    // preview should have been updated!
+    expect( $pickerElement.find('.sp-preview-inner').css('background-color') ).toEqual('rgb(0, 0, 255)');
+  });
+
+
+  it('should use via the directive given options', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" options="{showInput: true}"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    expect($('.sp-container').hasClass('sp-input-disabled')).toBe(false);
   });
 
 });
