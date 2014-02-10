@@ -2,9 +2,10 @@
  * angular-spectrum-colorpicker v0.0.1
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
- * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/.
+ * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
+ * Idea from http://jsfiddle.net/g/LAJCa/
  *
- * Copyright 2014, Jimdo, Hendrike Heydenreich <hendrike@jimdo.com>
+ * Copyright 2014, Jimdo
  * Released under the MIT license
  */
 (function(angular) {
@@ -32,13 +33,13 @@
           color: $ngModel.$viewValue,
           change: onChange
         }, $scope.$eval(attrs.options));
-  
-  
+
+
         // update colorpicker, each time the model has changed
         $ngModel.$render = function() {
           $input.spectrum('set', $ngModel.$viewValue || '');
         };
-  
+
         $input.spectrum(options);
       }
     };
