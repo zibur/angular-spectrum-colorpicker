@@ -1,7 +1,7 @@
 Angular Spectrum Colorpicker
 ============================
 
-[![Build Status](https://magnum.travis-ci.com/Jimdo/angular-spectrum-colorpicker.png?token=ZtVcRNmVRxsSKaA711h9)](https://magnum.travis-ci.com/Jimdo/angular-spectrum-colorpicker)
+[![Build Status](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker.png)](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker)
 
 Angularified [spectrum colorpicker](http://bgrins.github.io/spectrum/)
 
@@ -44,7 +44,7 @@ Usage
 
 4. Customize colorpicker with spectrum params via the options attribute:
 
-		<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true"></spectrum-colorpicker>
+		<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true}"></spectrum-colorpicker>
 
 	All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 

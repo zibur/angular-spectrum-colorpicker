@@ -4,7 +4,7 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
     require: 'ngModel',
     scope: false,
     replace: true,
-    template: '<span class="uschi"><input class="input-small" /></span>',
+    template: '<span><input class="input-small" /></span>',
     link: function($scope, $element, attrs, $ngModel) {
       var $input = $element.find('input');
       var onChange = function(color) {
