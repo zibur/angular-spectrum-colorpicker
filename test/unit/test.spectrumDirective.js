@@ -45,4 +45,16 @@ describe('SpectrumDirective', function() {
     expect($('.sp-container').hasClass('sp-input-disabled')).toBe(false);
   });
 
+  it('should toggle the colorpicker, when the given toggler is clicked', function() {
+    var $label = $('<label id="theTrigger">Click here to toggle!</label>');
+    $(document.body).append($label);
+    var $pickerElement = angular.element('<spectrum-colorpicker trigger-id="theTrigger" ng-model="targetColor" options="{showInput: true}"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    $label.trigger('click');
+    expect( $pickerElement.find('.sp-replacer').hasClass('sp-active') ).toBe(true);
+  });
+
 });
