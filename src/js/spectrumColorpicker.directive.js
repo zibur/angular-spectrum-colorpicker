@@ -19,7 +19,9 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
       };
       var options = angular.extend({
         color: $ngModel.$viewValue,
-        change: onChange
+        change: onChange,
+        move: onChange,
+        hide: onChange
       }, $scope.$eval(attrs.options));
 
 
