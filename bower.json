@@ -4,7 +4,7 @@
   "authors": [
     "Jimdo, <hendrike@jimdo.com>"
   ],
-  "description": "Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/",
+  "description": "Angular directive for a colorpicker, that bases on the spectrum colorpicker",
   "main": "dist/angular-spectrum-colorpicker.js",
   "keywords": [
     "directive",
