@@ -24,7 +24,7 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
 
 
       if(attrs.triggerId) {
-        angular.element('#' + attrs.triggerId).on('click', onToggle);
+        angular.element(document.body).on('click', '#' + attrs.triggerId, onToggle);
       }
 
 
