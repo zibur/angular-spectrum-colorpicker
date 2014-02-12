@@ -41,7 +41,7 @@
   
   
         if(attrs.triggerId) {
-            angular.element('#' + attrs.triggerId).on('click', onToggle);
+          angular.element('#' + attrs.triggerId).on('click', onToggle);
         }
   
   
