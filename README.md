@@ -61,7 +61,7 @@ Start demo & test environment
 
 	./node_modules/protractor/bin/webdriver-manager update --standalone
 	./node_modules/protractor/bin/webdriver-manager start
-	node-dev scripts/web-server.js
+	node scripts/web-server.js
 	grunt
 
 
