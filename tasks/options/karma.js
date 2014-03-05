@@ -22,6 +22,7 @@ module.exports = {
   travis: {
     options: {
       browsers: ['PhantomJS', 'Firefox'],
+      reporters: ['dots'],
       singleRun: true
     }
   },
