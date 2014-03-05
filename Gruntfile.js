@@ -21,9 +21,8 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   /* "Helper" Tasks */
+  grunt.registerTask('_protractor:start', ['http-server:test', 'protractor']);
   grunt.registerTask('_test:beforeEach', ['jshint']);
-
-  grunt.registerTask('_git:dist', ['gitcommit:dist', 'gittag:dist', 'gitpush:dist', 'gitpush:disttags']);
 
   /* "Public" Tasks */
 
@@ -31,17 +30,29 @@ module.exports = function(grunt) {
   grunt.registerTask('watch:start', ['karma:watch:start', 'watch:andtest']);
 
   /* Execute all tests. */
-  grunt.registerTask('test', ['_test:beforeEach', 'karma:all', 'protractor']);
+  grunt.registerTask('test', ['_test:beforeEach', 'karma:all', '_protractor:start']);
   /* Execute e2e tests. */
-  grunt.registerTask('test:e2e', ['_test:beforeEach', 'protractor']);
+  grunt.registerTask('test:e2e', ['_test:beforeEach', '_protractor:start']);
+  /* Execute unit tests. */
+  grunt.registerTask('test:unit', ['_test:beforeEach', 'karma:all']);
   /* Execute karma tests with Firefox and PhantomJS. */
   grunt.registerTask('test:travis', ['_test:beforeEach', 'karma:travis']);
 
   /* Build dist files. */
   grunt.registerTask('build', ['concat:dist', 'uglify']);
 
-  /* Distribute a new minor version. */
-  grunt.registerTask('dist', ['test', 'bump', 'build', '_git:dist']);
+  /* Distribute a new version. */
+  grunt.registerTask('dist', function() {
+    grunt.log.errorlns('deprecated, please use `grunt release`');
+  });
+  grunt.registerTask('release', 'Test, bump, build and release.', function(type) {
+    grunt.task.run([
+      'test',
+      'bump-only:' + (type || 'patch'),
+      'build',
+      'bump-commit'
+    ]);
+  });
 
   /* test and build by default. */
   grunt.registerTask('default', ['test', 'build']);
