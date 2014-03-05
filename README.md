@@ -52,41 +52,27 @@ Usage
 Initialize the source project
 -----------------------------
 
-	bower install
 	npm install
 
 
-Start demo & test environment
------------------------------
+Run demo
+--------
 
-	./node_modules/protractor/bin/webdriver-manager update --standalone
-	./node_modules/protractor/bin/webdriver-manager start
-	node scripts/web-server.js
-	grunt
-
-
-Play around in demo
--------------------
+ 	grunt demo
 
 [http://localhost:8000/demo/index.html](http://localhost:8000/demo/index.html)
-
 
 
 Grunt Tasks
 -----------
 
-(need running system:
-  ./node_modules/protractor/bin/webdriver-manager start
-  node-dev scripts/web-server.js
-)
-
  * `grunt`: Execute tests and build dist
- * `grunt test`: Just test
+ * `grunt demo`: Start a local webserver serving the demo html on port 8000
+ * `grunt test`: All test
  * `grunt watch:start`: Watch source and test files and run karma on change
  * `grunt build`: Just build
- * `grunt test:e2e`: Just test end to end
- * `grunt dist`: Test, build, bump patch version, commit, add version tag and push
-
+ * `grunt test:e2e`: Just test end to end tests
+ * `grunt release`: Test, build, bump patch version, commit, add version tag and push
 
 
 LICENSE

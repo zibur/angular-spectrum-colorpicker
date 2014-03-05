@@ -26,6 +26,9 @@ module.exports = function(grunt) {
 
   /* "Public" Tasks */
 
+  /* Alias for starting the demo server */
+  grunt.registerTask('demo', ['http-server:demo']);
+  
   /* Watch source and test files and execute karma unit tests on change. */
   grunt.registerTask('watch:start', ['karma:watch:start', 'watch:andtest']);
 
