@@ -57,4 +57,14 @@ describe('SpectrumDirective', function() {
     expect( $pickerElement.find('.sp-replacer').hasClass('sp-active') ).toBe(true);
   });
 
+  it('should destroy the spectrum picker when destroying the directive', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" options="{showInput: true}"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+    expect($('.sp-container').length).toBe(1);
+    $pickerElement.scope().$destroy();
+    expect($('.sp-container').length).toBe(0);
+  });
+
 });

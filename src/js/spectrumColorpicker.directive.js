@@ -35,6 +35,10 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
       };
 
       $input.spectrum(options);
+
+      $scope.$on('$destroy', function() {
+        $input.spectrum('destroy');
+      });
     }
   };
 });
