@@ -10,7 +10,7 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
       var $input = $element.find('input');
       var onChange = function(color) {
         $scope.$apply(function() {
-          $ngModel.$setViewValue(color);
+          $ngModel.$setViewValue(color.toString());
         });
       };
       var onToggle = function() {
