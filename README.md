@@ -8,11 +8,15 @@ Angularified [spectrum colorpicker](http://bgrins.github.io/spectrum/)
 This module bases on the [spectrum colorpicker](http://bgrins.github.io/spectrum/)
 and can be embedded in any angular project via dependency injection:
 
-	var myApp = angular.module('myApp', ['angularSpectrumColorpicker']);
+```javascript
+var myApp = angular.module('myApp', ['angularSpectrumColorpicker']);
+```
 
 To us it, put the Angular Spectrum Colorpicker directive in your html code and bind it to your project scope:
 
-	<spectrum-colorpicker ng-model="someModel"></spectrum-colorpicker>
+```html
+<spectrum-colorpicker ng-model="someModel"></spectrum-colorpicker>
+```
 
 
 Dependencies
@@ -36,29 +40,39 @@ Usage
 
 2. Add angular spectrum colorpicker module to your angular app
 
-		angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
+```javascript
+angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
+```
 
 3. Use the directive whereever you want
 
-		<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
+```html
+<spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
+```
 
 4. Customize colorpicker with spectrum params via the options attribute:
 
-		<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true}"></spectrum-colorpicker>
+```html
+<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true}"></spectrum-colorpicker>
+```
 
-	All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
+All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 
 
 Initialize the source project
 -----------------------------
 
-	npm install
+```shell
+npm install
+```
 
 
 Run demo
 --------
 
- 	grunt demo
+```shell
+grunt demo
+```
 
 [http://localhost:8000/demo/index.html](http://localhost:8000/demo/index.html)
 
