@@ -48,7 +48,7 @@
   
   
         $ngModel.$render = function() {
-          $input.spectrum('set', $ngModel.$viewValue || '');
+          $input.spectrum('set', $ngModel.$viewValue || options.color || '');
         };
   
         $input.spectrum(options);
