@@ -34,6 +34,19 @@ describe('SpectrumDirective', function() {
     expect( $pickerElement.find('.sp-preview-inner').css('background-color') ).toEqual('rgb(0, 0, 255)');
   });
 
+  it('should initialize the colorpicker with the correct default color', function() {
+    var defaultColor = '#123456';
+    var defaultColorRgb = 'rgb(18, 52, 86)';
+    var $pickerElement = angular.element('<spectrum-colorpicker options="' + "{color: '"+ defaultColor +"'}"+'" ng-model="targetColor"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    expect($scope.targetColor).toBe(defaultColor);
+    expect($pickerElement.find('.sp-preview-inner').css('background-color')).toEqual(defaultColorRgb);
+  });
+
 
   it('should use via the directive given options', function() {
     var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" options="{showInput: true}"></spectrum-colorpicker>');

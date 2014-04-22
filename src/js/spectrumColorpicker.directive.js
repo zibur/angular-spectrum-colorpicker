@@ -31,8 +31,13 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
 
 
       $ngModel.$render = function() {
-        $input.spectrum('set', $ngModel.$viewValue || options.color || '');
+        $input.spectrum('set', $ngModel.$viewValue || '');
       };
+
+      if (options.color) {
+        $input.spectrum('set', options.color || '');
+        $ngModel.$setViewValue(options.color);
+      }
 
       $input.spectrum(options);
 
