@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.0.11
+ * angular-spectrum-colorpicker v1.0.12
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -48,8 +48,13 @@
   
   
         $ngModel.$render = function() {
-          $input.spectrum('set', $ngModel.$viewValue || options.color || '');
+          $input.spectrum('set', $ngModel.$viewValue || '');
         };
+  
+        if (options.color) {
+          $input.spectrum('set', options.color || '');
+          $ngModel.$setViewValue(options.color);
+        }
   
         $input.spectrum(options);
   
