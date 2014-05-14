@@ -19,18 +19,28 @@
   <script src="/demo/app.js"></script>
 </head>
 
-<body ng-controller="ColorPickerCtrl">
+<body ng-controller="ColorPickerCtrl" ng-init="color = 'red'">
 
   <h1>My angular scpectrum demo</h1>
 
 
-  <input type="text" name="uschi" ng-model="uschiColor">
+  <input type="text" name="color" ng-model="color">
   <label id="theTrigger">Click here to open colorpicker</label>
 
-  <spectrum-colorpicker trigger-id="theTrigger" ng-model="uschiColor" options="{showInput: true, showAlpha: true, showPalette: true, palette: [['black', 'white', 'blanchedalmond'],['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']]}"></spectrum-colorpicker>
+  <spectrum-colorpicker
+  trigger-id="theTrigger"
+  ng-model="color"
+  options="{
+    showInput: true,
+    showAlpha: true,
+    allowEmpty: true,
+    showPalette: true,
+    palette: [['black', 'white', 'blanchedalmond'],['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']]
+  }">
+  </spectrum-colorpicker>
 
   <br>
-  <button ng-click="uschiColor='#ffffff'">set color to #ffffff</button>
+  <button ng-click="color='#ffffff'">set color to #ffffff</button>
 
 </body>
 </html>

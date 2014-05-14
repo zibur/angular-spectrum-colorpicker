@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.0.12
+ * angular-spectrum-colorpicker v1.0.13
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -25,9 +25,23 @@
       link: function($scope, $element, attrs, $ngModel) {
   
         var $input = $element.find('input');
+        var fallbackValue = $scope.$eval(attrs.fallbackValue);
+  
+        function setViewValue(color) {
+          var value = fallbackValue;
+  
+          if (color) {
+            value = color.toString();
+          } else if (angular.isUndefined(fallbackValue)) {
+            value = color;
+          }
+  
+          $ngModel.$setViewValue(value);
+        }
+  
         var onChange = function(color) {
           $scope.$apply(function() {
-            $ngModel.$setViewValue(color.toString());
+            setViewValue(color);
           });
         };
         var onToggle = function() {
@@ -53,7 +67,7 @@
   
         if (options.color) {
           $input.spectrum('set', options.color || '');
-          $ngModel.$setViewValue(options.color);
+          setViewValue(options.color);
         }
   
         $input.spectrum(options);

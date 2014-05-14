@@ -8,9 +8,23 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
     link: function($scope, $element, attrs, $ngModel) {
 
       var $input = $element.find('input');
+      var fallbackValue = $scope.$eval(attrs.fallbackValue);
+
+      function setViewValue(color) {
+        var value = fallbackValue;
+
+        if (color) {
+          value = color.toString();
+        } else if (angular.isUndefined(fallbackValue)) {
+          value = color;
+        }
+
+        $ngModel.$setViewValue(value);
+      }
+
       var onChange = function(color) {
         $scope.$apply(function() {
-          $ngModel.$setViewValue(color.toString());
+          setViewValue(color);
         });
       };
       var onToggle = function() {
@@ -36,7 +50,7 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
 
       if (options.color) {
         $input.spectrum('set', options.color || '');
-        $ngModel.$setViewValue(options.color);
+        setViewValue(options.color);
       }
 
       $input.spectrum(options);

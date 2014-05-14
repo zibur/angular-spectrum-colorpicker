@@ -68,6 +68,7 @@ describe('SpectrumDirective', function() {
 
     $label.trigger('click');
     expect( $pickerElement.find('.sp-replacer').hasClass('sp-active') ).toBe(true);
+    $label.remove();
   });
 
   it('should destroy the spectrum picker when destroying the directive', function() {
@@ -79,5 +80,34 @@ describe('SpectrumDirective', function() {
     $pickerElement.scope().$destroy();
     expect($('.sp-container').length).toBe(0);
   });
+
+  it('should cope with falsy color values', function() {
+    var $label = $('<label id="theTrigger">Click here to toggle!</label>');
+    $(document.body).append($label);
+    var $pickerElement = angular.element('<spectrum-colorpicker trigger-id="theTrigger" ng-model="targetColor" options="{allowEmpty: true}"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = false;
+    $compile($pickerElement)($scope);
+    $label.trigger('click');
+    $('.sp-cancel').click();
+    expect($scope.targetColor).toBe(null);
+    $label.remove();
+  });
+
+  it('should reset the color to the fallback value, if provided', function() {
+    var $label = $('<label id="theTrigger">Click here to toggle!</label>');
+    $(document.body).append($label);
+    var $pickerElement = angular.element('<spectrum-colorpicker fallback-value="fallbackValue" trigger-id="theTrigger" ng-model="targetColor" options="{allowEmpty: true}"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    var fallback = {};
+    $scope.fallbackValue = fallback;
+    $scope.targetColor = false;
+    $compile($pickerElement)($scope);
+    $label.trigger('click');
+    $('.sp-cancel').click();
+    expect($scope.targetColor).toBe(fallback);
+    $label.remove();
+  });
+
 
 });
