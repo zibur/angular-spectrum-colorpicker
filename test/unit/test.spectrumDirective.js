@@ -70,6 +70,23 @@ describe('SpectrumDirective', function() {
     expect( $pickerElement.find('.sp-replacer').hasClass('sp-active') ).toBe(true);
   });
 
+
+  it('should not create a color if value is false when you click on cancel', function() {
+    var $cancel = $(".sp-cancel");
+    var defaultColor = 'false';
+
+    var $pickerElement = angular.element('<spectrum-colorpicker options="' + "{color: '"+ defaultColor +"'}"+'" ng-model="targetColor"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $cancel.trigger("click");
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    expect($pickerElement.find('.sp-preview-inner').css('background-color')).toEqual(false);
+
+  });
+
+
   it('should destroy the spectrum picker when destroying the directive', function() {
     var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" options="{showInput: true}"></spectrum-colorpicker>');
     var $scope = $rootScope.$new();

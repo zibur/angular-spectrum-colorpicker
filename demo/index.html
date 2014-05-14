@@ -27,7 +27,16 @@
   <input type="text" name="uschi" ng-model="uschiColor">
   <label id="theTrigger">Click here to open colorpicker</label>
 
-  <spectrum-colorpicker trigger-id="theTrigger" ng-model="uschiColor" options="{showInput: true, showAlpha: true, showPalette: true, palette: [['black', 'white', 'blanchedalmond'],['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']]}"></spectrum-colorpicker>
+  <spectrum-colorpicker
+  trigger-id="theTrigger"
+  ng-model="uschiColor"
+  options="{
+    showInput: true,
+    showAlpha: true,
+    showPalette: true,
+    palette: [['black', 'white', 'blanchedalmond'],['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']]
+  }">
+  </spectrum-colorpicker>
 
   <br>
   <button ng-click="uschiColor='#ffffff'">set color to #ffffff</button>
