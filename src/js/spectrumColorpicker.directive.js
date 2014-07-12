@@ -9,7 +9,7 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
 
       var $input = $element.find('input');
       var fallbackValue = $scope.$eval(attrs.fallbackValue);
-      var format = attrs.format || 'hex';
+      var format = attrs.format || undefined;
 
       function setViewValue(color) {
         var value = fallbackValue;
