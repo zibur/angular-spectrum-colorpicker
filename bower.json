@@ -2,7 +2,7 @@
   "name": "angular-spectrum-colorpicker",
   "version": "1.0.13",
   "authors": [
-    "Jimdo, <hendrike@jimdo.com>"
+    "Jimdo GmbH"
   ],
   "description": "Angular directive for a colorpicker, that bases on the spectrum colorpicker",
   "main": "dist/angular-spectrum-colorpicker.js",
