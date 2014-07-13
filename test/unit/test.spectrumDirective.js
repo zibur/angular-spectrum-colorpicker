@@ -109,5 +109,38 @@ describe('SpectrumDirective', function() {
     $label.remove();
   });
 
+  it('should return hex-values when format is set to hex', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" format="hex"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    // set value to an rgba-color
+    $('input.sp-input').val('rgba(255, 0, 0, 0.6)').trigger('change');
+
+    // since format is set to hex, we should still get hex back, not rgba
+    expect($scope.targetColor.toString()).toBe('#ff0000');
+  });
+
+  it('should return the same value if there is no format set', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    var formats = [
+      'rgba(255, 0, 0, 0.6)',
+      'rgb(255, 0, 0)',
+      '#f0f0f0',
+      'hsv(0, 100%, 100%)'
+    ];
+
+    for (var i = 0; i < formats.length; i++) {
+      $('input.sp-input').val(formats[i]).trigger("change");
+      expect($scope.targetColor.toString()).toBe(formats[i]);
+    }
+  });
 
 });

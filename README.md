@@ -58,6 +58,13 @@ angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
 
 All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
 
+5. Choose a output format
+```html
+<spectrum-colorpicker format="hex"></spectrum-colorpicker>
+```
+
+Changes the format of the final value. A list of formats can be found in [spectrum](https://github.com/bgrins/spectrum/blob/cbd644200a2ba6c9f954c85c336eefd843a44d31/spectrum.js#L1261) or in the [spectrum documentation](http://bgrins.github.io/spectrum/#details-acceptedColorInputs).
+
 
 Initialize the source project
 -----------------------------

@@ -9,12 +9,13 @@ angularSpectrumColorpicker.directive('spectrumColorpicker', function() {
 
       var $input = $element.find('input');
       var fallbackValue = $scope.$eval(attrs.fallbackValue);
+      var format = attrs.format || undefined;
 
       function setViewValue(color) {
         var value = fallbackValue;
 
         if (color) {
-          value = color.toString();
+          value = color.toString(format);
         } else if (angular.isUndefined(fallbackValue)) {
           value = color;
         }
