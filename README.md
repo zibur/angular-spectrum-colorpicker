@@ -37,33 +37,27 @@ Usage
 		spectrum.css
 		spectrum.js
 		angular-spectrum-colorpicker.min.js
-
 2. Add angular spectrum colorpicker module to your angular app
-
 ```javascript
 angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
 ```
-
 3. Use the directive whereever you want
-
 ```html
 <spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 ```
-
-4. Customize colorpicker with spectrum params via the options attribute:
-
+ * (Optional) Customize colorpicker with spectrum params via the options attribute:
 ```html
-<spectrum-colorpicker ng-model="yourFancyModel" options="{showInput: true, showAlpha: true}"></spectrum-colorpicker>
+<spectrum-colorpicker
+  ng-model="yourFancyModel"
+  options="{showInput: true, showAlpha: true}">
+</spectrum-colorpicker>
 ```
-
 All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
-
-5. Choose a output format
+ * (Optional) Choose a output format
 ```html
 <spectrum-colorpicker format="hex"></spectrum-colorpicker>
 ```
-
-Changes the format of the final value. A list of formats can be found in [spectrum](https://github.com/bgrins/spectrum/blob/cbd644200a2ba6c9f954c85c336eefd843a44d31/spectrum.js#L1261) or in the [spectrum documentation](http://bgrins.github.io/spectrum/#details-acceptedColorInputs).
+Changes the format of the final value. A list of formats can be found in the [spectrum documentation](http://bgrins.github.io/spectrum/#details-acceptedColorInputs).
 
 
 Initialize the source project
