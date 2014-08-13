@@ -81,13 +81,25 @@ grunt demo
 Grunt Tasks
 -----------
 
- * `grunt`: Execute tests and build dist
- * `grunt demo`: Start a local webserver serving the demo html on port 8000
- * `grunt test`: All test
- * `grunt watch:start`: Watch source and test files and run karma on change
+ * `grunt`: Execute tests
+ * `grunt test`: Just test
+ * `grunt test:e2e`: Just test end to end
+ * `grunt test:unit`: Just test unit
+ * `grunt tdd`: Watch source and test files and run tests
+ * `grunt tdd:e2e`: Watch and test just end to end
+ * `grunt tdd:unit`: Watch and test just unit
  * `grunt build`: Just build
- * `grunt test:e2e`: Just test end to end tests
  * `grunt release`: Test, build, bump patch version, commit, add version tag and push
+
+ `test` tasks have a `--browsers` option to specify the browsers you want to use
+
+ Browsers can also be set by the following environment-variables
+ ```
+   PROTRACTOR_BROWSERS=Firefox,Chrome
+   KARMA_BROWSERS=Firefox,PhantomJS
+ ```
+
+_See Gruntfile.js and tasks/options for all task details._
 
 
 LICENSE

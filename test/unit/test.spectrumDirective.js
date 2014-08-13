@@ -25,7 +25,7 @@ describe('SpectrumDirective', function() {
     $rootScope.$digest();
 
     // set value within the colorpicker
-    $('input.sp-input').val("#0000ff").trigger("change");
+    $('input.sp-input').val('#0000ff').trigger('change');
 
     // scope should have been changed!
     expect($scope.targetColor.toString()).toBe('#0000ff');
@@ -37,7 +37,7 @@ describe('SpectrumDirective', function() {
   it('should initialize the colorpicker with the correct default color', function() {
     var defaultColor = '#123456';
     var defaultColorRgb = 'rgb(18, 52, 86)';
-    var $pickerElement = angular.element('<spectrum-colorpicker options="' + "{color: '"+ defaultColor +"'}"+'" ng-model="targetColor"></spectrum-colorpicker>');
+    var $pickerElement = angular.element('<spectrum-colorpicker options="' + '{color: \'' + defaultColor + '\'}' + '" ng-model="targetColor"></spectrum-colorpicker>');
     var $scope = $rootScope.$new();
     $scope.targetColor = 'green';
     $compile($pickerElement)($scope);
@@ -138,7 +138,7 @@ describe('SpectrumDirective', function() {
     ];
 
     for (var i = 0; i < formats.length; i++) {
-      $('input.sp-input').val(formats[i]).trigger("change");
+      $('input.sp-input').val(formats[i]).trigger('change');
       expect($scope.targetColor.toString()).toBe(formats[i]);
     }
   });

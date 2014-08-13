@@ -14,40 +14,63 @@ module.exports = function(grunt) {
   var config  = Helpers.config;
   var _       = grunt.util._;
 
+  /* Task configuration is in ./tasks/options - load here */
   config = _.extend(config, Helpers.loadConfig('./tasks/options/'));
 
   /* Load grunt tasks from NPM packages */
   require('load-grunt-tasks')(grunt);
   grunt.loadTasks('tasks');
 
-  /* "Helper" Tasks */
-  grunt.registerTask('_protractor:start', ['http-server:test', 'protractor']);
-  grunt.registerTask('_test:beforeEach', ['jshint']);
 
-  /* "Public" Tasks */
+  grunt.registerTask(
+    'tdd',
+    'Watch source and test files and execute tests on change',
+    function(suite) {
+      var tasks = [];
+      var watcher = '';
+      if (!suite || suite === 'unit') {
+        tasks.push('karma:watch:start');
+        watcher = 'watch:andtestunit';
+      }
+      if (!suite || suite === 'e2e') {
+        tasks.push('http-server:test', 'shell:startsilenium');
+        watcher = 'watch:andteste2e';
+      }
+      if (!suite) {
+        watcher = 'watch:andtestboth';
+      }
+      tasks.push(watcher);
+      grunt.task.run(tasks);
+    }
+  );
 
-  /* Alias for starting the demo server */
-  grunt.registerTask('demo', ['http-server:demo']);
-  
-  /* Watch source and test files and execute karma unit tests on change. */
-  grunt.registerTask('watch:start', ['karma:watch:start', 'watch:andtest']);
+  grunt.registerTask('demo', 'Start the demo app', ['shell:opendemo', 'http-server:demo']);
 
-  /* Execute all tests. */
-  grunt.registerTask('test', ['_test:beforeEach', 'karma:all', '_protractor:start']);
-  /* Execute e2e tests. */
-  grunt.registerTask('test:e2e', ['_test:beforeEach', '_protractor:start']);
-  /* Execute unit tests. */
-  grunt.registerTask('test:unit', ['_test:beforeEach', 'karma:all']);
-  /* Execute karma tests with Firefox and PhantomJS. */
-  grunt.registerTask('test:travis', ['_test:beforeEach', 'karma:travis']);
+  grunt.registerTask(
+    'test',
+    'Execute all the tests',
+    function(suite) {
+      var tasks = ['jshint'];
+      if (!suite || suite === 'unit') {
+        process.env.defaultBrowsers = 'Firefox,Chrome';
+        tasks.push('karma:all');
+      }
+      if (!suite || suite === 'e2e') {
+        tasks.push('http-server:test', 'protractor:single');
+      }
+      grunt.task.run(tasks);
+    }
+  );
 
-  /* Build dist files. */
-  grunt.registerTask('build', ['concat:dist', 'uglify']);
+  grunt.registerTask(
+    'build',
+    'Build dist files',
+    [
+      'concat:dist',
+      'uglify'
+    ]
+  );
 
-  /* Distribute a new version. */
-  grunt.registerTask('dist', function() {
-    grunt.log.errorlns('deprecated, please use `grunt release`');
-  });
   grunt.registerTask('release', 'Test, bump, build and release.', function(type) {
     grunt.task.run([
       'test',
@@ -57,8 +80,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  /* test and build by default. */
-  grunt.registerTask('default', ['test', 'build']);
+  grunt.registerTask('default', 'Test and Build', ['test']);
 
   grunt.initConfig(config);
 };

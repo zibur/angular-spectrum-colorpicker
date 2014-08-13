@@ -8,12 +8,15 @@
   "main": "dist/angular-spectrum-colorpicker.js",
   "keywords": [
     "directive",
-    "colorpicker"
+    "colorpicker",
+    "angular"
   ],
   "license": "MIT",
+  "private": true,
   "devDependencies": {
-    "angular-mocks": "~1.2.8",
-    "jquery": "~1.8.1"
+    "angular": "~1.2.21",
+    "angular-mocks": "~1.2.21",
+    "jquery": "~2.1.1"
   },
   "dependencies": {
     "spectrum": "1.4.1",
@@ -26,6 +29,8 @@
     "test",
     "tasks",
     "demo",
-    "src"
+    "src",
+    "Gruntfile.js",
+    "package.json"
   ]
 }
