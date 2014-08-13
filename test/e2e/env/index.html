@@ -10,11 +10,12 @@
   <!--       THIS IS NOT A SANDBOX, IT'S FOR E2E TESTING!      -->
   <!-- PLEASE USE demo/index.html IF YOU'D LIKE TO PLAY AROUND -->
 
-  <input type="text" name="color" ng-model="color">
+  <input type="text" name="color" ng-model="color" id="color">
 
   <spectrum-colorpicker
   id="myPicker"
   ng-model="color"
+  format="hex"
   options="{
     showInput: true,
     showAlpha: true
