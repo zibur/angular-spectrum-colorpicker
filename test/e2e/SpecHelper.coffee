@@ -7,9 +7,6 @@ beforeEach ->
   browser.get sandboxUrl
 
 colorpicker =
-  toggle: ->
-    element(By.css '#myPicker').click()
-
   chooseColorAtPoint: (x, y) ->
     ptor.actions()
       .mouseMove(element(By.css('.sp-val')), {x: x, y: y })
