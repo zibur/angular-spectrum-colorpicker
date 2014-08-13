@@ -4,11 +4,23 @@
   <meta charset="utf-8">
   <title>E2E Tests</title>
   <link rel="stylesheet/less" type="text/css" href="/src/less/style.less" />
+  <link rel="stylesheet" href="/bower_components/spectrum/spectrum.css" />
 </head>
 <body>
   <!--       THIS IS NOT A SANDBOX, IT'S FOR E2E TESTING!      -->
   <!-- PLEASE USE demo/index.html IF YOU'D LIKE TO PLAY AROUND -->
-  <div my-directive></div>
+
+  <input type="text" name="color" ng-model="color">
+
+  <spectrum-colorpicker
+  id="myPicker"
+  ng-model="color"
+  options="{
+    showInput: true,
+    showAlpha: true
+  }">
+  </spectrum-colorpicker>
+
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script>
     /* jshint indent: false */
