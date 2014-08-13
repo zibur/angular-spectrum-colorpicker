@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.0.16
+ * angular-spectrum-colorpicker v1.0.17
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -8,7 +8,7 @@
  * Copyright 2014, Jimdo
  * Released under the MIT license
  */
-(function(angular) {
+(function(angular, undefined) {
   'use strict';
 
   // src/js/spectrumColorpicker.module.js
@@ -82,4 +82,4 @@
       };
     });
   })();
-})(angular);
+})(window.angular);
