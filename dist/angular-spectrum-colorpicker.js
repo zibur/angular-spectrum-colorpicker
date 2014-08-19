@@ -28,7 +28,7 @@
   
           var $input = $element.find('input');
           var fallbackValue = $scope.$eval(attrs.fallbackValue);
-          var format = attrs.format || undefined;
+          var format = $scope.$eval(attrs.format) || undefined;
   
           function setViewValue(color) {
             var value = fallbackValue;

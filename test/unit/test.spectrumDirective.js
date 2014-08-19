@@ -110,7 +110,7 @@ describe('SpectrumDirective', function() {
   });
 
   it('should return hex-values when format is set to hex', function() {
-    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" format="hex"></spectrum-colorpicker>');
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" format="\'hex\'"></spectrum-colorpicker>');
     var $scope = $rootScope.$new();
     $scope.targetColor = 'green';
     $compile($pickerElement)($scope);
@@ -121,6 +121,20 @@ describe('SpectrumDirective', function() {
 
     // since format is set to hex, we should still get hex back, not rgba
     expect($scope.targetColor.toString()).toBe('#ff0000');
+  });
+
+  it('should return rgb-values when format is set to rgb via evaluated value', function() {
+    var $pickerElement = angular.element('<spectrum-colorpicker ng-model="targetColor" format="format"></spectrum-colorpicker>');
+    var $scope = $rootScope.$new();
+    $scope.targetColor = 'green';
+    $scope.format = 'rgb';
+    $compile($pickerElement)($scope);
+    $rootScope.$digest();
+
+    // set value to an hsv-color
+    $('input.sp-input').val('hsv(0, 100%, 100%)').trigger('change');
+    // since format is now set to an evaluated value of rgb, we should now get rgb back
+    expect($scope.targetColor.toString()).toBe('rgb(255, 0, 0)');
   });
 
   it('should return the same value if there is no format set', function() {
