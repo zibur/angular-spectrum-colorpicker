@@ -103,7 +103,7 @@ _See Gruntfile.js and tasks/options for all task details._
 
 Version history
 ---------------
-* 1.2.0 - backwards incompatible change of `format="hex"` to format="'hex'"` in order to allow changing the output format after initializing. See #12.
+* 1.2.0 - backwards incompatible change of `format="hex"` to `format="'hex'"` in order to allow changing the output format after initializing. See #12.
 
 LICENSE
 -------
