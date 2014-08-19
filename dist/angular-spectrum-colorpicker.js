@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.0.17
+ * angular-spectrum-colorpicker v1.1.0
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -28,7 +28,7 @@
   
           var $input = $element.find('input');
           var fallbackValue = $scope.$eval(attrs.fallbackValue);
-          var format = attrs.format || undefined;
+          var format = $scope.$eval(attrs.format) || undefined;
   
           function setViewValue(color) {
             var value = fallbackValue;
