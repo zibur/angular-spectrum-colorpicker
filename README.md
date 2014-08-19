@@ -55,7 +55,7 @@ angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
 All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.github.io/spectrum/#options)
  * (Optional) Choose a output format
 ```html
-<spectrum-colorpicker format="hex"></spectrum-colorpicker>
+<spectrum-colorpicker format="'hex'"></spectrum-colorpicker>
 ```
 Changes the format of the final value. A list of formats can be found in the [spectrum documentation](http://bgrins.github.io/spectrum/#details-acceptedColorInputs).
 
@@ -101,6 +101,9 @@ Grunt Tasks
 
 _See Gruntfile.js and tasks/options for all task details._
 
+Version history
+---------------
+* 1.2.0 - backwards incompatible change of `format="hex"` to format="'hex'"` in order to allow changing the output format after initializing. See #12.
 
 LICENSE
 -------
