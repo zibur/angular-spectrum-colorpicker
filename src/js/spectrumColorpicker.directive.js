@@ -65,7 +65,7 @@
         var isDisabled = angular.isDefined(options.disabled) ? options.disabled : false;
         var readDisabledFromAttribute = function () {
             return !!attrs.disabled;
-        }
+        };
         $scope.$watch(readDisabledFromAttribute, function (disabledAttributePresent) {
             if (disabledAttributePresent !== isDisabled) {
                 isDisabled = disabledAttributePresent;
