@@ -2,6 +2,7 @@ Angular Spectrum Colorpicker
 ============================
 
 [![Build Status](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker.png)](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker)
+[![devDependency Status](https://david-dm.org/Jimdo/angular-spectrum-colorpicker/dev-status.svg)](https://david-dm.org/Jimdo/angular-spectrum-colorpicker#info=devDependencies)
 
 Angularified [spectrum colorpicker](http://bgrins.github.io/spectrum/)
 
