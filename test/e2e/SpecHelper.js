@@ -26,10 +26,6 @@ var colorpicker = {
 };
 
 module.exports = {
-  help: function(i) {
-    i = i || 0;
-    return i < 1 ? '... I need somebody.' : 'not just anybody!';
-  },
   input: {
     value: function() {
       return element(protractor.By.id('color')).getAttribute('value');
