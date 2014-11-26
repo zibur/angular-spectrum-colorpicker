@@ -11,7 +11,7 @@
 (function(angular, undefined) {
   'use strict';
 
-  // src/js/spectrumColorpicker.module.js
+  // src/js/helper.module.js
   var angularSpectrumColorpicker = angular.module('angularSpectrumColorpicker', []);
 
   // src/js/spectrumColorpicker.directive.js
@@ -23,7 +23,7 @@
         require: 'ngModel',
         scope: false,
         replace: true,
-        template: '<span><input class="input-small" /></span>',
+        templateUrl: 'directive.html',
         link: function($scope, $element, attrs, $ngModel) {
   
           var $input = $element.find('input');
@@ -82,4 +82,14 @@
       };
     });
   })();
+
+  // .tmp/all-partials.js
+  angular.module('angularSpectrumColorpicker').run(['$templateCache', function($templateCache) {
+    'use strict';
+  
+    $templateCache.put('directive.html',
+      "<span><input class=input-small></span>"
+    );
+  
+  }]);
 })(window.angular);

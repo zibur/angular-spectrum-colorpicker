@@ -1,9 +1,6 @@
 /**
  * Build instructions for grunt.
  *
- * Structure seen in [rprtr](https://github.com/mrmrs/rprtr)
- * by [aputinski](https://github.com/aputinski)
- *
  * @param  {Object} grunt
  * @return {void}
  */
@@ -33,7 +30,7 @@ module.exports = function(grunt) {
         watcher = 'watch:andtestunit';
       }
       if (!suite || suite === 'e2e') {
-        tasks.push('http-server:test', 'shell:startsilenium');
+        tasks.push('connect:test', 'shell:startsilenium');
         watcher = 'watch:andteste2e';
       }
       if (!suite) {
@@ -44,19 +41,25 @@ module.exports = function(grunt) {
     }
   );
 
-  grunt.registerTask('demo', 'Start the demo app', ['shell:opendemo', 'http-server:demo']);
+  grunt.registerTask('demo', 'Start the demo app', [
+    'connect:demo',
+    'shell:opendemo',
+    'parallel:watchdemo'
+  ]);
+
+  grunt.registerTask('coverage', 'Serve coverage report', ['connect:coverage']);
 
   grunt.registerTask(
     'test',
     'Execute all the tests',
     function(suite) {
-      var tasks = ['jshint'];
+      var tasks = ['jshint', 'ngtemplates'];
       if (!suite || suite === 'unit') {
         process.env.defaultBrowsers = 'Firefox,Chrome';
-        tasks.push('karma:all');
+        tasks.push('shell:deleteCoverages', 'karma:all');
       }
       if (!suite || suite === 'e2e') {
-        tasks.push('http-server:test', 'protractor:single');
+        tasks.push('connect:test', 'protractor:single');
       }
       grunt.task.run(tasks);
     }
@@ -66,7 +69,15 @@ module.exports = function(grunt) {
     'build',
     'Build dist files',
     [
+      'ngtemplates',
+      /*
+      'less:dist',
+      'less:distmin',
+      'concat:bannerToDistStyle',
+      'concat:bannerToDistStyleMin',
+      */
       'concat:dist',
+      'ngAnnotate:dist',
       'uglify'
     ]
   );
@@ -80,7 +91,7 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('default', 'Test and Build', ['test']);
+  grunt.registerTask('default', 'Test', ['test']);
 
   grunt.initConfig(config);
 };

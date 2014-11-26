@@ -2,25 +2,14 @@
 <html lang="en" ng-app="colorpickerApp">
 <head>
   <meta charset="utf-8">
-  <title>My angular scpectrum demo</title>
+  <title>My angular spectrum demo</title>
 
-  <!-- bower libs -->
-  <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script src="/bower_components/angular/angular.min.js"></script>
   <link rel="stylesheet" href="/bower_components/spectrum/spectrum.css" />
-  <script src="/bower_components/spectrum/spectrum.js"></script>
-
-  <!-- colorpicker module -->
-  <script src="/src/js/spectrumColorpicker.module.js"></script>
-  <script src="/src/js/spectrumColorpicker.directive.js"></script>
-
-  <!-- demo stuff -->
   <link rel="stylesheet" href="/demo/styles.css" />
-  <script src="/demo/app.js"></script>
+  <!-- [[src/less]] -->
+  <!-- [[src/js]] -->
+  <script src="demo/app.js"></script>
 </head>
-<body>
-  <my-app></my-app>
-
 <body ng-controller="ColorPickerCtrl" ng-init="color = 'red'">
 
   <h1 style="color: {{color}}">My Angular spectrum demo</h1>

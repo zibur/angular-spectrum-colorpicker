@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>E2E Tests</title>
-  <link rel="stylesheet/less" type="text/css" href="/src/less/style.less" />
+  <!-- [[src/less]] -->
   <link rel="stylesheet" href="/bower_components/spectrum/spectrum.css" />
 </head>
 <body>
@@ -22,16 +22,7 @@
   }">
   </spectrum-colorpicker>
 
-  <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script>
-    /* jshint indent: false */
-    /* global files, $ */
-    $.get('/tasks/files.js', function() {
-      files.testEnv.push('test/e2e/env/app.js');
-      $.each(files.testEnv, function(i, url) {
-        $('body').append($('<script>').attr('src', '/' + url));
-      });
-    });
-  </script>
+  <!-- [[src/js]] -->
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

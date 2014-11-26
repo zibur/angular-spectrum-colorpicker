@@ -4,20 +4,52 @@
 /* jshint undef: false, unused: false  */
 
 /* some globals we might need later on, set in beforeEach */
-var $rootScope, $compile;
+var $rootScope, $compile, $injector, $httpBackend, $scope, $q, $controller;
 
-beforeEach(function() {
-  /* Initiate the main module */
-  module('angularSpectrumColorpicker');
+function initGlobals(withModule) {
+  if (withModule !== false) {
+    /* Initiate the main module */
+    module('angularSpectrumColorpicker');
+  }
 
-  /* jshint camelcase: false */
-  inject(function(_$rootScope_, _$compile_) {
+  /* jshint maxparams: 10 */
+  inject(function(_$rootScope_, _$compile_, _$injector_, _$httpBackend_, _$q_, _$controller_) {
+    /* jshint maxparams: 3 */
     $rootScope   = _$rootScope_;
     $compile     = _$compile_;
+    $injector    = _$injector_;
+    $httpBackend = _$httpBackend_;
+    $q           = _$q_;
+    $controller  = _$controller_;
   });
+}
+
+
+function createDirective() {
+  var r = {};
+
+  /* Create the element for our directive */
+  r.elm = angular.element('<spectrum-colorpicker ng-model="x">');
+
+  /* Apply the directive */
+  $compile(r.elm)($rootScope);
+  $rootScope.$digest();
+
+  /* Save a reference to the directive scope */
+  r.scope = r.elm.isolateScope() || r.elm.scope();
+
+  return r;
+}
+
+beforeEach(function() {
+  $rootScope = $compile = $injector = $httpBackend = $scope = $q = $controller = null;
 });
 
 afterEach(function() {
-  // clean up all generated dom elements
+  if ($httpBackend) {
+    /* Make sure, there are no unexpected request */
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  }
   $(document.body).html('');
 });

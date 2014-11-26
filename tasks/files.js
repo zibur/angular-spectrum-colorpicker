@@ -1,39 +1,53 @@
+var _ = require('grunt').util._;
 var files = {
   grunt: 'Gruntfile.js',
 
   source: [
-    'src/js/spectrumColorpicker.module.js',
-    'src/js/spectrumColorpicker.directive.js'
+    'src/js/helper.module.js',
+    'src/js/!(helper.module)*.js'
+  ],
+  sourceStyle: [
   ],
 
 
+  distStyle: 'dist/<%= pkg.name %>.css',
+  distStyleMin: 'dist/<%= pkg.name %>.min.css',
   dist: 'dist/<%= pkg.name %>.js',
   distMin: 'dist/<%= pkg.name %>.min.js',
   dists: 'dist/*',
 
-
+  partialsDir: 'src/partials',
   allHTML: '*.html',
+  allPartials: 'src/partials/*.html',
+  allPartialsCombined: '.tmp/all-partials.js',
 
-
-  unitTests: 'test/unit/**/*.+(js|coffee)',
+  unitTests: ['test/unit/SpecHelper.+(js|coffee)', 'test/unit/**/*Spec.+(js|coffee)'],
   e2eTests: ['test/e2e/SpecHelper.+(js|coffee)', 'test/e2e/*Spec.+(js|coffee)'],
-  testEnvKarma: [
-    'bower_components/angular/angular.js',
-    'bower_components/angular-mocks/angular-mocks.js',
-    'bower_components/spectrum/spectrum.js'
-  ],
 
-  package: ['package.json', 'bower.json']
+  environments: {},
+
+  demo: 'demo/*',
+
+  'package': ['package.json', 'bower.json']
 };
 
-/* Prepare environments */
-files.testEnvKarma = files.testEnvKarma.concat(files.source);
+var baseEnvironment = [].concat(
+  'bower_components/jquery/dist/jquery.js',
+  'bower_components/spectrum/spectrum.js',
+  'bower_components/angular/angular.js',
+  files.source,
+  files.allPartialsCombined
+);
+
+var demoEnvironment = _.clone(baseEnvironment);
+var karmaEnvironment = _.clone(baseEnvironment);
+
+karmaEnvironment.unshift('bower_components/jasmine-moar-matchers/lib/*.js');
+karmaEnvironment.push('bower_components/angular-mocks/angular-mocks.js');
 
 
-files.testEnv = JSON.parse(JSON.stringify(files.testEnvKarma));
-files.demoEnv = JSON.parse(JSON.stringify(files.testEnv));
-
-files.testEnvKarma.unshift('bower_components/jquery/dist/jquery.js');
+files.environments.demo = demoEnvironment;
+files.environments.karma = karmaEnvironment;
 
 if (typeof module === 'object') {
   module.exports = files;

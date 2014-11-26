@@ -16,7 +16,8 @@
   "devDependencies": {
     "angular": "^1.2.21",
     "angular-mocks": "^1.2.21",
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "jasmine-moar-matchers": "~0.0.2"
   },
   "dependencies": {
     "spectrum": "1.5.0",

@@ -65,24 +65,21 @@
     "predef"        : [
         "angular",
         "jasmine",
-        "jQuery",
         "beforeEach",
         "afterEach",
         "describe",
-        "ddescribe",
         "xdescribe",
         "it",
-        "iit",
         "xit",
         "expect",
         "spyOn",
-        "runs",
-        "waits",
         "inject",
         "module",
         "exports",
         "require",
         "angularSpectrumColorpicker",
-        "process"
+        "process",
+        "element",
+        "by"
     ]
 }

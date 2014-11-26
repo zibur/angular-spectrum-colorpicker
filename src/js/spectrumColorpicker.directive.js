@@ -6,7 +6,7 @@
       require: 'ngModel',
       scope: false,
       replace: true,
-      template: '<span><input class="input-small" /></span>',
+      templateUrl: 'directive.html',
       link: function($scope, $element, attrs, $ngModel) {
 
         var $input = $element.find('input');

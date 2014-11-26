@@ -1,3 +1,4 @@
+/* global initGlobals, createDirective */
 describe('Setup', function() {
   'use strict';
 
@@ -10,16 +11,22 @@ describe('Setup', function() {
   });
 
   it('should be able to find the angular module', function() {
+    initGlobals();
     expect(angular.module('angularSpectrumColorpicker')).toBeDefined();
   });
 
-  it('should use the full jQuery to find elements', function() {
-    var elm = angular.element('<div><span class="foo" /></div>');
-    expect(elm.find('.foo').length).toBe(1);
+  it('should be able to create a directive', function() {
+    initGlobals();
+
+    createDirective();
   });
 
   it('should have additional jasmine matchers', function() {
     expect(function() {}).toBeInstanceOf(Function);
   });
 
+  it('should use jasmine 2.0 done callbacks', function(done) {
+    expect(window.waitsFor).toBeUndefined();
+    window.setTimeout(done, 10);
+  });
 });

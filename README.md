@@ -2,6 +2,7 @@ Angular Spectrum Colorpicker
 ============================
 
 [![Build Status](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker.png)](https://travis-ci.org/Jimdo/angular-spectrum-colorpicker)
+[![Coverage Status](https://coveralls.io/repos/Jimdo/angular-spectrum-colorpicker/badge.png?branch=master)](https://coveralls.io/r/Jimdo/angular-spectrum-colorpicker?branch=master)
 [![devDependency Status](https://david-dm.org/Jimdo/angular-spectrum-colorpicker/dev-status.svg)](https://david-dm.org/Jimdo/angular-spectrum-colorpicker#info=devDependencies)
 
 Angularified [spectrum colorpicker](http://bgrins.github.io/spectrum/)
@@ -83,6 +84,7 @@ Grunt Tasks
 -----------
 
  * `grunt`: Execute tests
+ * `grunt coverage`: Serve coverage report on port 7000
  * `grunt test`: Just test
  * `grunt test:e2e`: Just test end to end
  * `grunt test:unit`: Just test unit
