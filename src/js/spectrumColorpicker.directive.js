@@ -4,21 +4,24 @@
     return {
       restrict: 'E',
       require: 'ngModel',
-      scope: false,
+      scope: {
+        fallbackValue: '=',
+        format: '=?',
+        options: '=?',
+        triggerId: '@?'
+      },
       replace: true,
       templateUrl: 'directive.html',
       link: function($scope, $element, attrs, $ngModel) {
 
         var $input = $element.find('input');
-        var fallbackValue = $scope.$eval(attrs.fallbackValue);
-        var format = $scope.$eval(attrs.format) || undefined;
 
         function setViewValue(color) {
-          var value = fallbackValue;
+          var value = $scope.fallbackValue;
 
           if (color) {
-            value = color.toString(format);
-          } else if (angular.isUndefined(fallbackValue)) {
+            value = color.toString($scope.format);
+          } else if (angular.isUndefined($scope.fallbackValue)) {
             value = color;
           }
 
@@ -39,13 +42,15 @@
           change: onChange,
           move: onChange,
           hide: onChange
-        }, $scope.$eval(attrs.options));
+        }, $scope.options);
 
-
-        if(attrs.triggerId) {
-          angular.element(document.body).on('click', '#' + attrs.triggerId, onToggle);
+        function getTriggerElement() {
+          return angular.element(document.body).find('#' + $scope.triggerId);
         }
 
+        if ($scope.triggerId) {
+          getTriggerElement().on('click', onToggle);
+        }
 
         $ngModel.$render = function() {
           $input.spectrum('set', $ngModel.$viewValue || '');
