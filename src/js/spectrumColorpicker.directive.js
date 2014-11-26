@@ -64,6 +64,9 @@
         $input.spectrum(options);
 
         $scope.$on('$destroy', function() {
+          if ($scope.triggerId) {
+            getTriggerElement().off('click', onToggle);
+          }
           $input.spectrum('destroy');
         });
       }
