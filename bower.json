@@ -7,7 +7,7 @@
     "Joscha Feth <joscha@feth.com>"
   ],
   "description": "Angular directive for a colorpicker, that bases on the spectrum colorpicker",
-  "main": "dist/angular-spectrum-colorpicker.js",
+  "main": "dist/angular-spectrum-colorpicker.min.js",
   "keywords": [
     "directive",
     "colorpicker",
