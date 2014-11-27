@@ -8,7 +8,14 @@
         fallbackValue: '=',
         format: '=?',
         options: '=?',
-        triggerId: '@?'
+        triggerId: '@?',
+
+        onChange: '&?',
+        onShow: '&?',
+        onHide: '&?',
+        onMove: '&?',
+
+        onBeforeShow: '&?',
       },
       replace: true,
       templateUrl: 'directive.html',
@@ -16,16 +23,31 @@
 
         var $input = $element.find('input');
 
+        function formatColor(tiny) {
+          var formatted = tiny;
+          if (formatted) {
+            formatted = tiny.toString($scope.format);
+          }
+          return formatted;
+        }
+
+        function callOnChange(color) {
+          if (angular.isFunction($scope.onChange)) {
+            $scope.onChange({color: color});
+          }
+        }
+
         function setViewValue(color) {
           var value = $scope.fallbackValue;
 
           if (color) {
-            value = color.toString($scope.format);
+            value = formatColor(color);
           } else if (angular.isUndefined($scope.fallbackValue)) {
             value = color;
           }
 
           $ngModel.$setViewValue(value);
+          callOnChange(value);
         }
 
         var onChange = function(color) {
@@ -37,12 +59,37 @@
           $input.spectrum('toggle');
           return false;
         };
-        var options = angular.extend({
-          color: $ngModel.$viewValue,
-          change: onChange,
-          move: onChange,
-          hide: onChange
-        }, $scope.options);
+
+
+        var baseOpts = {
+          color: $ngModel.$viewValue
+        };
+
+        var localOpts = {};
+
+        angular.forEach({
+          'change': 'onChange',
+          'move': 'onMove',
+          'hide': 'onHide',
+          'show': 'onShow'
+        }, function(eventKey, spectrumOptionName) {
+          localOpts[spectrumOptionName] = function(color) {
+            onChange(color);
+            // we don't do this for change, because we expose the current
+            // value actively through the model
+            if (eventKey !== 'change' && angular.isFunction($scope[eventKey])) {
+              return $scope[eventKey]({color: formatColor(color)});
+            }
+          };
+        });
+
+        if (angular.isFunction($scope.onBeforeShow)) {
+          localOpts.beforeShow = function(color) {
+            return $scope.onBeforeShow({color: formatColor(color)});
+          };
+        }
+
+        var options = angular.extend({}, baseOpts, $scope.options, localOpts);
 
         function getTriggerElement() {
           return angular.element(document.body).find('#' + $scope.triggerId);
@@ -54,6 +101,7 @@
 
         $ngModel.$render = function() {
           $input.spectrum('set', $ngModel.$viewValue || '');
+          callOnChange($ngModel.$viewValue);
         };
 
         if (options.color) {

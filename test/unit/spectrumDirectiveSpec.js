@@ -33,7 +33,7 @@ describe('SpectrumDirective', function() {
       $('input.sp-input').val('#0000ff').trigger('change');
 
       // scope should have been changed!
-      expect($rootScope.targetColor.toString()).toBe('#0000ff');
+      expect($rootScope.targetColor).toBe('#0000ff');
 
       // preview should have been updated!
       expect(d.elm.find('.sp-preview-inner').css('background-color')).toEqual('rgb(0, 0, 255)');
@@ -179,6 +179,78 @@ describe('SpectrumDirective', function() {
         expect($rootScope.targetColor.toString()).toBe(formats[i]);
       }
     });
+  });
+
+  describe('eventing', function() {
+    beforeEach(function() {
+      initGlobals();
+    });
+
+    it('should correctly emit change event', function() {
+      $rootScope.eventSpy = jasmine.createSpy('change');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-change': 'eventSpy()'
+      });
+
+      $rootScope.targetColor = 'blue';
+      expect($rootScope.eventSpy).toHaveBeenCalled();
+    });
+
+    it('should correctly emit show event', function() {
+      $rootScope.eventSpy = jasmine.createSpy('show');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-show': 'eventSpy()'
+      });
+      d.elm.find('input').spectrum('show');
+      expect($rootScope.eventSpy).toHaveBeenCalled();
+    });
+
+    it('should correctly emit hide event', function() {
+      $rootScope.eventSpy = jasmine.createSpy('hide');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-hide': 'eventSpy()'
+      });
+      d.elm.find('input').spectrum('show');
+      d.elm.find('input').spectrum('hide');
+      expect($rootScope.eventSpy).toHaveBeenCalled();
+    });
+
+    it('should correctly emit beforeShow event', function() {
+      $rootScope.eventSpy = jasmine.createSpy('beforeShow');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-before-show': 'eventSpy()'
+      });
+      d.elm.find('input').spectrum('show');
+      expect($rootScope.eventSpy).toHaveBeenCalled();
+    });
+
+    it('should prevent opening if beforeShow returns false', function() {
+      $rootScope.beforeShowSpy = jasmine.createSpy('beforeShow').and.returnValue(false);
+      $rootScope.showSpy = jasmine.createSpy('show');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-before-show': 'beforeShowSpy()',
+        'on-show': 'showSpy()'
+      });
+      d.elm.find('input').spectrum('show');
+      expect($rootScope.showSpy).not.toHaveBeenCalled();
+    });
+
+    it('should correctly emit move event', function() {
+      $rootScope.eventSpy = jasmine.createSpy('move');
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'on-move': 'eventSpy()'
+      });
+      d.elm.find('input').spectrum('show');
+      $(document).find('.sp-clear').click();
+      expect($rootScope.eventSpy).toHaveBeenCalled();
+    });
+
   });
 
 });

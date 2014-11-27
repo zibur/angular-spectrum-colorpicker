@@ -21,6 +21,8 @@
   <spectrum-colorpicker
   trigger-id="theTrigger"
   ng-model="color"
+  format="'hsl'"
+  on-change="onChange(color)"
   options="{
     showInput: true,
     showAlpha: true,

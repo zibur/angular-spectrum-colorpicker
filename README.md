@@ -60,7 +60,18 @@ All valid options: [http://bgrins.github.io/spectrum/#options](http://bgrins.git
 <spectrum-colorpicker format="'hex'"></spectrum-colorpicker>
 ```
 Changes the format of the final value. A list of formats can be found in the [spectrum documentation](http://bgrins.github.io/spectrum/#details-acceptedColorInputs).
-
+* (Optional) use events
+```html
+<spectrum-colorpicker
+  on-change="myOnChange(color)"
+  on-show="myOnShow(color)"
+  on-hide="myOnHide(color)"
+  on-move="myOnMove(color)"
+  on-before-show="myOnBeforeShow(color)"
+  >
+</spectrum-colorpicker>
+```
+A description of the events can be found in the [spectrum documentation](https://bgrins.github.io/spectrum/#events).
 
 Initialize the source project
 -----------------------------
@@ -106,7 +117,11 @@ _See Gruntfile.js and tasks/options for all task details._
 
 Version history
 ---------------
-* 1.2.0 - backwards incompatible change of `format="hex"` to `format="'hex'"` in order to allow changing the output format after initializing. See #12.
+* 1.3.0
+ * reintegrate with [Jimdo/angular-directive-seed](https://github.com/Jimdo/angular-directive-seed).
+ * Add eventing (partially backwards-incompatible due to how the triggering of `onChange` is handled). See #21.
+* 1.2.0
+ * backwards incompatible change of `format="hex"` to `format="'hex'"` in order to allow changing the output format after initializing. See #12.
 
 LICENSE
 -------
