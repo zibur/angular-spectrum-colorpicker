@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.3.0
+ * angular-spectrum-colorpicker v1.3.1
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -23,6 +23,7 @@
         require: 'ngModel',
         scope: {
           fallbackValue: '=',
+          disabled: '=?',
           format: '=?',
           options: '=?',
           triggerId: '@?',
@@ -67,11 +68,6 @@
             callOnChange(value);
           }
   
-          var onChange = function(color) {
-            $scope.$apply(function() {
-              setViewValue(color);
-            });
-          };
           var onToggle = function() {
             $input.spectrum('toggle');
             return false;
@@ -91,7 +87,7 @@
             'show': 'onShow'
           }, function(eventKey, spectrumOptionName) {
             localOpts[spectrumOptionName] = function(color) {
-              onChange(color);
+              setViewValue(color);
               // we don't do this for change, because we expose the current
               // value actively through the model
               if (eventKey !== 'change' && angular.isFunction($scope[eventKey])) {
@@ -133,6 +129,14 @@
               getTriggerElement().off('click', onToggle);
             }
             $input.spectrum('destroy');
+          });
+  
+          if(angular.isDefined(options.disabled)) {
+            $scope.disabled = !!options.disabled;
+          }
+  
+          $scope.$watch('disabled', function (newDisabled) {
+            $input.spectrum(newDisabled ? 'disable' : 'enable');
           });
         }
       };
