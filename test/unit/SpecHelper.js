@@ -25,11 +25,15 @@ function initGlobals(withModule) {
 }
 
 
-function createDirective() {
+function createDirective(attributes) {
   var r = {};
 
   /* Create the element for our directive */
-  r.elm = angular.element('<spectrum-colorpicker ng-model="x">');
+  var attr = '';
+  angular.forEach(attributes, function(value, key) {
+    attr += ' ' + key + '=' + '"' + ('' + value).replace(/"/g, '&quot;') + '"';
+  });
+  r.elm = angular.element('<spectrum-colorpicker' + attr + '>');
 
   /* Apply the directive */
   $compile(r.elm)($rootScope);
