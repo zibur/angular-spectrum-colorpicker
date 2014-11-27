@@ -1,5 +1,5 @@
 /*!
- * angular-spectrum-colorpicker v1.3.1
+ * angular-spectrum-colorpicker v1.3.2
  * https://github.com/Jimdo/angular-spectrum-colorpicker
  *
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
@@ -104,12 +104,8 @@
   
           var options = angular.extend({}, baseOpts, $scope.options, localOpts);
   
-          function getTriggerElement() {
-            return angular.element(document.body).find('#' + $scope.triggerId);
-          }
-  
           if ($scope.triggerId) {
-            getTriggerElement().on('click', onToggle);
+            angular.element(document.body).on('click', '#' + $scope.triggerId, onToggle);
           }
   
           $ngModel.$render = function() {
@@ -126,7 +122,7 @@
   
           $scope.$on('$destroy', function() {
             if ($scope.triggerId) {
-              getTriggerElement().off('click', onToggle);
+              angular.element(document.body).off('click', '#' + $scope.triggerId, onToggle);
             }
             $input.spectrum('destroy');
           });
