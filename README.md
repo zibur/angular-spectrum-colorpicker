@@ -5,16 +5,16 @@ Angular Spectrum Colorpicker
 [![Coverage Status](https://coveralls.io/repos/Jimdo/angular-spectrum-colorpicker/badge.png?branch=master)](https://coveralls.io/r/Jimdo/angular-spectrum-colorpicker?branch=master)
 [![devDependency Status](https://david-dm.org/Jimdo/angular-spectrum-colorpicker/dev-status.svg)](https://david-dm.org/Jimdo/angular-spectrum-colorpicker#info=devDependencies)
 
-Angularified [spectrum colorpicker](http://bgrins.github.io/spectrum/)
+Angularified [spectrum color picker](http://bgrins.github.io/spectrum/)
 
-This module bases on the [spectrum colorpicker](http://bgrins.github.io/spectrum/)
+This module bases on the [spectrum color picker](http://bgrins.github.io/spectrum/)
 and can be embedded in any angular project via dependency injection:
 
 ```javascript
 var myApp = angular.module('myApp', ['angularSpectrumColorpicker']);
 ```
 
-To us it, put the Angular Spectrum Colorpicker directive in your html code and bind it to your project scope:
+To use it, put the Angular Spectrum color picker directive in your html code and bind it to your project scope:
 
 ```html
 <spectrum-colorpicker ng-model="someModel"></spectrum-colorpicker>
@@ -34,20 +34,20 @@ Usage
 
 1. Include dependencies
 
-		jquery.min.js
-		angular.min.js
+		jquery.js
+		angular.js
 		spectrum.css
 		spectrum.js
-		angular-spectrum-colorpicker.min.js
-2. Add angular spectrum colorpicker module to your angular app
+		angular-spectrum-colorpicker.js
+2. Add angular spectrum color picker module to your angular app
 ```javascript
 angular.module('yourFancyApp', ['angularSpectrumColorpicker']);
 ```
-3. Use the directive whereever you want
+3. Use the directive wherever you want
 ```html
 <spectrum-colorpicker ng-model="yourFancyModel"></spectrum-colorpicker>
 ```
- * (Optional) Customize colorpicker with spectrum params via the options attribute:
+ * (Optional) Customize color picker with spectrum params via the options attribute:
 ```html
 <spectrum-colorpicker
   ng-model="yourFancyModel"
