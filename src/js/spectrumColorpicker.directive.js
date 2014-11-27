@@ -6,6 +6,7 @@
       require: 'ngModel',
       scope: {
         fallbackValue: '=',
+        disabled: '=?',
         format: '=?',
         options: '=?',
         triggerId: '@?',
@@ -112,16 +113,13 @@
           }
           $input.spectrum('destroy');
         });
-        
-        var isDisabled = angular.isDefined(options.disabled) ? options.disabled : false;
-        var readDisabledFromAttribute = function () {
-            return !!attrs.disabled;
-        };
-        $scope.$watch(readDisabledFromAttribute, function (disabledAttributePresent) {
-            if (disabledAttributePresent !== isDisabled) {
-                isDisabled = disabledAttributePresent;
-                $input.spectrum(isDisabled ? 'disable' : 'enable');
-            }
+
+        if(angular.isDefined(options.disabled)) {
+          $scope.disabled = !!options.disabled;
+        }
+
+        $scope.$watch('disabled', function (newDisabled) {
+          $input.spectrum(newDisabled ? 'disable' : 'enable');
         });
       }
     };

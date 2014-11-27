@@ -8,3 +8,9 @@ describe 'color change', ->
     blue = '#0000ff'
     Helper.colorpicker.enterValue blue
     expect(Helper.input.value()).toBe blue
+
+describe 'disabling', ->
+  it 'should be possible to enable/disable the color picker', ->
+    disabledCheckbox = element By.id 'disabled'
+    disabledCheckbox.click()
+    expect(Helper.input.get().isEnabled()).toBe false

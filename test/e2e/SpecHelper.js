@@ -27,6 +27,9 @@ var colorpicker = {
 
 module.exports = {
   input: {
+    get: function() {
+      return element(protractor.By.css('.input-small'));
+    },
     value: function() {
       return element(protractor.By.id('color')).getAttribute('value');
     }
