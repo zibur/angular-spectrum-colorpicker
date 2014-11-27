@@ -68,22 +68,54 @@ describe('SpectrumDirective', function() {
       expect($('.sp-container').hasClass('sp-input-disabled')).toBe(false);
     });
 
-    it('should toggle the colorpicker, when the given toggler is clicked', function() {
-      var $label = $('<label id="theTrigger">Click here to toggle!</label>');
-      $(document.body).append($label);
-      $rootScope.options = {
-        showInput: true
-      };
-      var d = createDirective({
-        'ng-model': 'targetColor',
-        'trigger-id': 'theTrigger',
-        'options': 'options'
+    describe('trigger handler', function() {
+      var $label;
+      beforeEach(function() {
+        $label = $('<label id="theTrigger">Click here to toggle!</label>');
+        $(document.body).append($label);
       });
 
-      $label.trigger('click');
-      expect(d.elm.find('.sp-replacer').hasClass('sp-active')).toBe(true);
-      $label.remove();
+      afterEach(function() {
+        $label.remove();
+      });
+
+      it('should toggle the colorpicker, when the given trigger is clicked', function() {
+        $rootScope.options = {
+          showInput: true
+        };
+        var d = createDirective({
+          'ng-model': 'targetColor',
+          'trigger-id': 'theTrigger',
+          'options': 'options'
+        });
+
+        $label.trigger('click');
+        expect(d.elm.find('.sp-replacer').hasClass('sp-active')).toBe(true);
+      });
+
+      function getClickEventNumber() {
+        var eventN = 0;
+        var events = $._data(document.body, 'events');
+        if (events && events.click) {
+          eventN = events.click.length;
+        }
+        return eventN;
+      }
+
+      it('should deregister the handler on directive destroy', function() {
+        var initialEvents = getClickEventNumber();
+        var d = createDirective({
+          'ng-model': 'targetColor',
+          'trigger-id': 'theTrigger',
+        });
+        expect(getClickEventNumber()).toBe(initialEvents + 1);
+        $label.trigger('click');
+        expect(d.elm.find('.sp-active').length).toBe(1);
+        d.scope.$destroy();
+        expect(getClickEventNumber()).toBe(initialEvents);
+      });
     });
+
 
     it('should destroy the spectrum picker when destroying the directive', function() {
       $rootScope.options = {
@@ -99,27 +131,21 @@ describe('SpectrumDirective', function() {
     });
 
     it('should cope with falsy color values', function() {
-      var $label = $('<label id="theTrigger">Click here to toggle!</label>');
-      $(document.body).append($label);
       $rootScope.targetColor = false;
       $rootScope.options = {
         allowEmpty: true
       };
       var d = createDirective({
         'ng-model': 'targetColor',
-        'trigger-id': 'theTrigger',
         'options': 'options'
       });
 
-      $label.trigger('click');
+      d.elm.find('input').spectrum('show');
       $('.sp-cancel').click();
       expect($rootScope.targetColor).toBe(null);
-      $label.remove();
     });
 
     it('should reset the color to the fallback value, if provided', function() {
-      var $label = $('<label id="theTrigger">Click here to toggle!</label>');
-      $(document.body).append($label);
       var fallback = {};
       $rootScope.fallbackValue = fallback;
       $rootScope.targetColor = false;
@@ -128,15 +154,13 @@ describe('SpectrumDirective', function() {
       };
       var d = createDirective({
         'ng-model': 'targetColor',
-        'trigger-id': 'theTrigger',
         'fallback-value': 'fallbackValue',
         'options': 'options'
       });
 
-      $label.trigger('click');
+      d.elm.find('input').spectrum('show');
       $('.sp-cancel').click();
       expect($rootScope.targetColor).toBe(fallback);
-      $label.remove();
     });
 
     it('should return hex-values when format is set to hex', function() {
