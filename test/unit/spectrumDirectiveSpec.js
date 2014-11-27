@@ -43,11 +43,12 @@ describe('SpectrumDirective', function() {
       var defaultColor = '#123456';
       var defaultColorRgb = 'rgb(18, 52, 86)';
       $rootScope.targetColor = 'green';
+      $rootScope.options = {
+        color: defaultColor
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
-        'options': JSON.stringify({
-          color: defaultColor
-        })
+        'options': 'options'
       });
 
       expect($rootScope.targetColor).toBe(defaultColor);
@@ -56,11 +57,12 @@ describe('SpectrumDirective', function() {
 
 
     it('should use via the directive given options', function() {
+      $rootScope.options = {
+        showInput: true
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
-        'options': JSON.stringify({
-          showInput: true
-        })
+        'options': 'options'
       });
 
       expect($('.sp-container').hasClass('sp-input-disabled')).toBe(false);
@@ -69,12 +71,13 @@ describe('SpectrumDirective', function() {
     it('should toggle the colorpicker, when the given toggler is clicked', function() {
       var $label = $('<label id="theTrigger">Click here to toggle!</label>');
       $(document.body).append($label);
+      $rootScope.options = {
+        showInput: true
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
         'trigger-id': 'theTrigger',
-        'options': JSON.stringify({
-          showInput: true
-        })
+        'options': 'options'
       });
 
       $label.trigger('click');
@@ -83,11 +86,12 @@ describe('SpectrumDirective', function() {
     });
 
     it('should destroy the spectrum picker when destroying the directive', function() {
+      $rootScope.options = {
+        showInput: true
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
-        'options': JSON.stringify({
-          showInput: true
-        })
+        'options': 'options'
       });
       expect($('.sp-container').length).toBe(1);
       d.scope.$destroy();
@@ -98,12 +102,13 @@ describe('SpectrumDirective', function() {
       var $label = $('<label id="theTrigger">Click here to toggle!</label>');
       $(document.body).append($label);
       $rootScope.targetColor = false;
+      $rootScope.options = {
+        allowEmpty: true
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
         'trigger-id': 'theTrigger',
-        'options': JSON.stringify({
-          allowEmpty: true
-        })
+        'options': 'options'
       });
 
       $label.trigger('click');
@@ -118,13 +123,14 @@ describe('SpectrumDirective', function() {
       var fallback = {};
       $rootScope.fallbackValue = fallback;
       $rootScope.targetColor = false;
+      $rootScope.options = {
+        allowEmpty: true
+      };
       var d = createDirective({
         'ng-model': 'targetColor',
         'trigger-id': 'theTrigger',
         'fallback-value': 'fallbackValue',
-        'options': JSON.stringify({
-          allowEmpty: true
-        })
+        'options': 'options'
       });
 
       $label.trigger('click');
@@ -135,9 +141,10 @@ describe('SpectrumDirective', function() {
 
     it('should return hex-values when format is set to hex', function() {
       $rootScope.targetColor = 'green';
+      $rootScope.format = 'hex';
       var d = createDirective({
         'ng-model': 'targetColor',
-        'format': JSON.stringify('hex')
+        'format': 'format'
       });
 
       // set value to an rgba-color
