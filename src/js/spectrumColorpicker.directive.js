@@ -51,6 +51,11 @@
           callOnChange(value);
         }
 
+        var onChange = function(color) {
+          $scope.$apply(function() {
+            setViewValue(color);
+          });
+        };
         var onToggle = function() {
           $input.spectrum('toggle');
           return false;
@@ -70,7 +75,7 @@
           'show': 'onShow'
         }, function(eventKey, spectrumOptionName) {
           localOpts[spectrumOptionName] = function(color) {
-            setViewValue(color);
+            onChange(color);
             // we don't do this for change, because we expose the current
             // value actively through the model
             if (eventKey !== 'change' && angular.isFunction($scope[eventKey])) {
