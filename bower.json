@@ -3,8 +3,16 @@
   "version": "1.3.4",
   "authors": [
     "Jimdo GmbH",
+    "Joscha Feth <joscha@feth.com>",
     "Hannes Diercks <hannes.diercks@jimdo.com>",
-    "Joscha Feth <joscha@feth.com>"
+    "Hendrike Heydenreich <hendrike@jimdo.com>",
+    "luto <m@luto.at>",
+    "Hauke Stange <hauke@jimdo.com>",
+    "asilberschneider <asilberschneider@users.noreply.github.com>",
+    "Elan Perach <elanperach@gmail.com>",
+    "Lasse Diercks <lasse@jimdo.com>",
+    "Matthew Davies <daviesgeek@users.noreply.github.com>",
+    "Denis Dervisevic <dervisevic@textalk.se>"
   ],
   "description": "Angular directive for a colorpicker, that bases on the spectrum colorpicker",
   "main": "dist/angular-spectrum-colorpicker.min.js",
