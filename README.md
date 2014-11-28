@@ -117,6 +117,10 @@ _See Gruntfile.js and tasks/options for all task details._
 
 Version history
 ---------------
+* 1.3.4
+ * re-adds $scope.$apply around model value change, because it caused problems
+* 1.3.3
+ * refactor triggers to work with delayed DOM
 * 1.3.1
  * Add handling of disabled attribute. See #15. 
 * 1.3.0
