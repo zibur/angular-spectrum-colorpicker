@@ -68,6 +68,17 @@ describe('SpectrumDirective', function() {
       expect($('.sp-container').hasClass('sp-input-disabled')).toBe(false);
     });
 
+    it('should understand the disabled option', function() {
+      $rootScope.options = {
+        disabled: true
+      };
+      var d = createDirective({
+        'ng-model': 'targetColor',
+        'options': 'options'
+      });
+      expect(d.elm.find('input').attr('disabled')).toBe('disabled');
+    });
+
     describe('trigger handler', function() {
       var $label;
       beforeEach(function() {
