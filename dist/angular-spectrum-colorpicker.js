@@ -5,13 +5,14 @@
  * Angular directive for a colorpicker, that bases on http://bgrins.github.io/spectrum/
  * Idea from http://jsfiddle.net/g/LAJCa/
  *
- * Copyright 2014, Jimdo
+ * Copyright 2014, Jimdo GmbH
  * Released under the MIT license
  */
 (function(angular, undefined) {
   'use strict';
 
   // src/js/helper.module.js
+  /* jshint unused: false, -W079 */
   var angularSpectrumColorpicker = angular.module('angularSpectrumColorpicker', []);
 
   // src/js/spectrumColorpicker.directive.js
@@ -32,6 +33,8 @@
           onShow: '&?',
           onHide: '&?',
           onMove: '&?',
+          onDragstart: '&?',
+          onDragstop: '&?',
   
           onBeforeShow: '&?',
         },
@@ -107,6 +110,18 @@
             };
           }
   
+          if (angular.isFunction($scope.onDragstart)) {
+            $element.on('dragstart.spectrum',function(event,tinycolor){
+              $scope.onDragstart({color: formatColor(tinycolor)});
+            });
+          }
+  
+          if (angular.isFunction($scope.onDragstop)) {
+            $element.on('dragstop.spectrum',function(event,tinycolor){
+              $scope.onDragstop({color: formatColor(tinycolor)});
+            });
+          }
+  
           var options = angular.extend({}, baseOpts, $scope.options, localOpts);
   
           if ($scope.triggerId) {
@@ -149,7 +164,7 @@
     'use strict';
   
     $templateCache.put('directive.html',
-      "<span><input class=input-small></span>"
+      "<span><input class=\"input-small\"></span>"
     );
   
   }]);
