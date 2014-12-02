@@ -15,6 +15,8 @@
         onShow: '&?',
         onHide: '&?',
         onMove: '&?',
+        onDragstart: '&?',
+        onDragstop: '&?',
 
         onBeforeShow: '&?',
       },
@@ -88,6 +90,18 @@
           localOpts.beforeShow = function(color) {
             return $scope.onBeforeShow({color: formatColor(color)});
           };
+        }
+
+        if (angular.isFunction($scope.onDragstart)) {
+          $element.on('dragstart.spectrum',function(event,tinycolor){
+            $scope.onDragstart({color: formatColor(tinycolor)});
+          });
+        }
+
+        if (angular.isFunction($scope.onDragstop)) {
+          $element.on('dragstop.spectrum',function(event,tinycolor){
+            $scope.onDragstop({color: formatColor(tinycolor)});
+          });
         }
 
         var options = angular.extend({}, baseOpts, $scope.options, localOpts);
